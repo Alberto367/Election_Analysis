@@ -18,6 +18,7 @@
 # When you don't know the path
 #import modules
 import csv
+from distutils import text_file
 import os
 # Assign a variable to load fiel from path
 file_to_load = os.path.join("Resources", "election_results.csv")
@@ -67,6 +68,20 @@ with open(file_to_load) as election_data:
         # Add a vote to that candidate's vote count
         candidate_votes[candidate_name] += 1
 
+# Save the results to our text file
+with open(file_to_save, "w") as txt_file:
+
+    # Print the final vote count to the terminal.
+    election_results = (
+        f"\nElection Results\n"
+        f"--------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"--------------------------\n")
+
+    print(election_results, end="")
+    # Save the final vote count to the text file.       
+    txt_file.write(election_results)
+
     # Determine percentage of votes for each candidate
     #1. Iterate through the candidate list
     for candidate_name in candidate_votes:
@@ -78,7 +93,12 @@ with open(file_to_load) as election_data:
         vote_percentages = float(votes)/float(total_votes) * 100
 
         # Print out each candidate name, vote count, and percentage of votes
-        print(f"{candidate_name}: {vote_percentages:.1f}% ({votes:,})\n")
+        candidate_results = (
+            f"{candidate_name}: {vote_percentages:.1f}% ({votes:,})\n")
+        
+        print(candidate_results)
+        # Save the candidate results to our text file
+        txt_file.write(candidate_results)
 
     ## Determine winning vote count and candidate
         # Determine if the votes is greater than the winning count
@@ -89,7 +109,7 @@ with open(file_to_load) as election_data:
             # and set winning_candidate = to candidate_name
             winning_candidate = candidate_name
 
-
+    # Print winning results in terminal
     winning_candidate_summary = (
         f"-------------------------\n"
         f"Winner: {winning_candidate}\n"
@@ -97,34 +117,9 @@ with open(file_to_load) as election_data:
         f"Winning Percenatge: {winning_percentage:.1f}%\n"
         f"-------------------------\n")
 
-print(winning_candidate_summary)
-
-
-
-
-
-
-
-
-# Using the with statement open the file as a text file.
-with open(file_to_save, "w") as txt_file:
-
-    # Write some data to the file.
-    txt_file.write("Hello World")
-
-    txt_file.write("Counties in the Election\n----------------------\nArapahoe\nDenver\nJefferson")
-  
-
-
-
-
-
-
-
-
-
-
-
+    print(winning_candidate_summary)
+    # Save the winning candidate's name to the text file.
+    txt_file.write(winning_candidate_summary)
 
 
 
