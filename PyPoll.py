@@ -18,7 +18,6 @@
 # When you don't know the path
 #import modules
 import csv
-from distutils import text_file
 import os
 # Assign a variable to load fiel from path
 file_to_load = os.path.join("Resources", "election_results.csv")
