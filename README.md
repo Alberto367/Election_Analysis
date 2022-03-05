@@ -37,6 +37,7 @@ The purpose of this election audit was to determine the winner of a local congre
 ## Election-Audit Results
 1. There were a total of 369,711 votes cast in this election.
 ```
+ # For each row in the CSV file.
 for row in reader:
 
         # Add to the total vote count
@@ -45,7 +46,7 @@ for row in reader:
         # Get the candidate name from each row.
         candidate_name = row[2]
 
-        # 3: Extract the county name from each row.
+        # Extract the county name from each row.
         county_name = row[1]
 ```
 2. County Results:
@@ -53,21 +54,23 @@ for row in reader:
     - Denver county had a turnout of 306,055 votes cast accounting for 82.8% of the total vote count.
     - Arapahoe county had a turnout of 24,801 votes cast accounting for 6.7% of the total vote count.
 ```
+# Write a for loop to get the county from the county dictionary.
 for county_name in county_votes:
         
-        # 6b: Retrieve the county vote count.
+        # Retrieve the county vote count.
         countyVotes  = county_votes.get(county_name)
         
-        # 6c: Calculate the percentage of votes for the county.
+        # Calculate the percentage of votes for the county.
         countyVotes_percentage = float(countyVotes) / float(total_votes) * 100
 
-        # 6d: Print the county results to the terminal.
+        # Print the county results to the terminal.
         county_results = (
                     f"{county_name}: {countyVotes_percentage:.1f}% ({countyVotes:,})\n")
 ```
 
 3. Denver county had the largest voter turnout in this election.
 ```
+# Write an if statement to determine the winning county and get its vote count.
 if (countyVotes > county_largest_turnout_votes):
             county_largest_turnout_votes = countyVotes
             county_largest_turnout = county_name
@@ -78,20 +81,31 @@ if (countyVotes > county_largest_turnout_votes):
     - Raymon Anthony Doane received 11,606 votes accounting for 3.1% of the total votes cast.
 
 ```
-for candidate_name in candidate_votes:
-    #Retrieve vote count and percentage
-    votes = candidate_votes.get(candidate_name)
-    vote_percentage = float(votes) / float(total_votes) * 100
-    candidate_results = (
-        f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+# Determine percentage of votes for each candidate
+    #1. Iterate through the candidate list
+    for candidate_name in candidate_votes:
+        
+        #2. Retrieve vote count of a candidate
+        votes = candidate_votes[candidate_name]
+
+        #3 Calculate the percentage of votes
+        vote_percentages = float(votes)/float(total_votes) * 100
+
+        # Print out each candidate name, vote count, and percentage of votes
+        candidate_results = (
+            f"{candidate_name}: {vote_percentages:.1f}% ({votes:,})\n")
 ```
 
 5. Diana DeGette won the election with a total of 272,892 votes received giving her 73.8% of the total votes cast.
 ```
-if  (votes > winning_count) and (vote_percentage > winning_percentage):
-    winning_count = votes
-    winning_candidate = candidate_name
-    winning_percentage = vote_percentage
+ ## Determine winning vote count and candidate
+        # Determine if the votes is greater than the winning count
+        if (votes > winning_count) and (vote_percentages > winning_percentage):
+            # if true then set winning_count = to votes and winning_percentages = to vote_percentages
+            winning_count = votes
+            winning_percentage = vote_percentages
+            # and set winning_candidate = to candidate_name
+            winning_candidate = candidate_name
 ```
 
 
