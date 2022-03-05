@@ -112,4 +112,4 @@ if (countyVotes > county_largest_turnout_votes):
 ## Election-Audit Summary
 1. This script can be modified to to include UDFs (User-Defined Functions) so other users can referance our code with ease and apply it to other election audits.
 
-2. We could also have better modularity by sperating our functions to make it more readable and reuse friendly, such as sperating the code for counties and the code for candidates. This will make it easiler to reuse certain aspect of our code in other elections.
+2. We could also have better modularity by sperating our functions to make it more readable and reuse friendly, such as seperating the code for counties and the code for candidates. This will make it easier to reuse certain aspects of our code in other elections.
